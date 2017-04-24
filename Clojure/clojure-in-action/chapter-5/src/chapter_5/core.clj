@@ -1,5 +1,5 @@
 (ns chapter-5.core
-  (import [java.util Date Set Calendar Random])
+  (:import [java.util Date Set Calendar Random])
   (:import [java.awt.event MouseAdapter])
   (:gen-class))
 
