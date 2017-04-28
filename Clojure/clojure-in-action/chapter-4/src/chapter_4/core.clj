@@ -36,7 +36,30 @@
 (subtype-namer (array-map))
 (subtype-namer (hash-map))
 
+(def user {:login "rob" :salary 100000 :referrer "mint.com"})
+(defn fee-amount [percentage user]
+  (with-precision 16 :rounding HALF_EVEN
+    (* 0.01 percentage (:salary user))))
 
+(defn affiliate-fee [user]
+  (case (:referrer user)
+    "mint.com" (fee-amount 0.03M user)
+    "google.com" (fee-amount 0.01M user)
+    (fee-amount 0.02M user)))
+
+(defmulti affiliate-fee-multi :referrer :default "*")
+
+(defmethod affiliate-fee-multi "mint.com" [user]
+  (fee-amount 0.03M user))
+
+(defmethod affiliate-fee-multi "google.com" [user]
+  (fee-amount 0.01 user))
+
+(defmethod affiliate-fee-multi "*" [user]
+  (fee-amount 0.02 user))
+
+;;; in order to redefine multimethod user must unmap it with the following line of code
+(ns-unmap 'chapter-4.core 'affiliate-fee-multi)
 
 (defn -main
   "I don't do a whole lot ... yet."
