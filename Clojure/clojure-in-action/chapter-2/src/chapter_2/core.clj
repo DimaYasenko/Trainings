@@ -7,13 +7,13 @@
 
 (println "Hello, World!")
 
-(doc +)
-(doc doc)
-(doc source)
-(source doc)
+;(doc +)
+;(doc doc)
+;(doc source)
+;(source doc)
 
-(find-doc "lazy")
-(apropos "doc")
+;(find-doc "lazy")
+;(apropos "doc")
 
 ;;; this function does addition
 (defn addition [x y]
@@ -30,7 +30,7 @@
 (pop (list 1 2 3))
 (count (list 1 2 3))
 (peek (list))
-(pop (list))
+;(pop (list))
 
 (vector 1 2 3 4)
 [1 2 3 4]
@@ -45,7 +45,7 @@
 (type (cons 1 (list 2 3)))
 (println (cons 1 (list 2 3)))
 
-(source +)
+;(source +)
 
 (let [x 1
       y 2
@@ -103,6 +103,8 @@
 
 ;;; map, filter, reduce
 
+(defn hello-world[]
+  (println "Hello"))
 
 (defn -main
   "I don't do a whole lot ... yet."
